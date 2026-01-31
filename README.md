@@ -113,7 +113,7 @@ Push (git push origin feature/awesome-thing)
 Open Pull Request
 
 📄 License
-MIT © 2026 [Your Name / Rahul k]
+MIT © 2026 [Rahul k]
 
 Made with ❤️ for the Quai Network community
 textFeel free to customize:
