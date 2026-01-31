@@ -3,7 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import { useState } from "react"
-import { Search, Menu, X, Blocks, Wallet2 } from "lucide-react"
+import { Search, Blocks, Wallet2, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
@@ -15,12 +15,24 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+const networks = [
+  { id: "quai", name: "Quai Ledger", color: "#00d4ff" },
+  { id: "qi", name: "Qi Ledger", color: "#00ff88" },
+]
 
 export function Header() {
   const [searchQuery, setSearchQuery] = useState("")
   const [walletConnected, setWalletConnected] = useState(false)
   const [walletAddress, setWalletAddress] = useState("")
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false)
+  const [selectedNetwork, setSelectedNetwork] = useState(networks[0])
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -76,8 +88,40 @@ export function Header() {
           </form>
         </div>
 
-        {/* Right side - Wallet Button */}
+        {/* Right side - Network Selector & Wallet Button */}
         <div className="flex items-center gap-2">
+          {/* Network Selector */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="ghost" 
+                className="hidden gap-2 border border-white/20 bg-white/5 text-white hover:bg-white/10 sm:flex"
+              >
+                <div 
+                  className="h-2 w-2 rounded-full"
+                  style={{ backgroundColor: selectedNetwork.color }}
+                />
+                {selectedNetwork.name}
+                <ChevronDown className="h-4 w-4 opacity-50" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="border-border bg-card">
+              {networks.map((network) => (
+                <DropdownMenuItem
+                  key={network.id}
+                  onClick={() => setSelectedNetwork(network)}
+                  className="cursor-pointer gap-2"
+                >
+                  <div 
+                    className="h-2 w-2 rounded-full"
+                    style={{ backgroundColor: network.color }}
+                  />
+                  {network.name}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           {/* Mobile Search Toggle */}
           <Button
             variant="ghost"

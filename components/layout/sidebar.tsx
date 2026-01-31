@@ -6,13 +6,17 @@ import {
   Blocks, 
   ArrowRightLeft, 
   Wallet, 
-  Coins, 
   FileCode, 
   LayoutDashboard,
   ChevronLeft,
   ChevronRight,
   Menu,
-  X
+  X,
+  Globe,
+  Code2,
+  KeyRound,
+  Network,
+  Coins
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useEffect } from "react"
@@ -20,12 +24,13 @@ import { Button } from "@/components/ui/button"
 import { useSidebar } from "./sidebar-context"
 
 const navItems = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/blocks", label: "Blocks", icon: Blocks },
+  { href: "/", label: "Home", icon: LayoutDashboard },
+  { href: "/addresses", label: "Addresses", icon: KeyRound },
+  { href: "/contracts", label: "Contracts", icon: FileCode },
+  { href: "/providers", label: "Providers", icon: Network },
   { href: "/transactions", label: "Transactions", icon: ArrowRightLeft },
-  { href: "/addresses", label: "Addresses", icon: Wallet },
-  { href: "/tokens", label: "Tokens", icon: Coins },
-  { href: "/smart-contracts", label: "Contracts", icon: FileCode },
+  { href: "/wallets", label: "Wallets", icon: Wallet },
+  { href: "/examples", label: "Examples", icon: Code2 },
 ]
 
 export function Sidebar() {
